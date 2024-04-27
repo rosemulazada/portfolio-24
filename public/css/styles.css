@@ -1,0 +1,109 @@
+/* Import Inter font */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap");
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --font-stack: Inter, system-ui, -apple-system, BlinkMacSystemFont,
+        "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans",
+        "Helvetica Neue", sans-serif;
+}
+
+html,
+body {
+    height: 100dvh;
+    font-family: var(--font-stack);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+}
+
+.fullpage_container {
+    height: 100%;
+
+    &:first-of-type {
+        background: pink;
+        position: relative;
+    }
+}
+
+/**============================================
+ *               LANDING PAGE
+ *=============================================**/
+
+/* Header */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5vh;
+    clip-path: polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%);
+
+    div.header_left__container {
+        font-size: 0.7em;
+        text-align: right;
+
+        display: flex;
+        align-items: center;
+        gap: 5vh;
+
+        #metadata {
+            #availabilityStatus::before {
+                content: "";
+                display: inline-block;
+                width: 8px;
+                height: 8px;
+                margin-right: 5px;
+                border-radius: 50%;
+                background-color: rgb(36, 161, 36);
+            }
+        }
+
+        .hamburger_menu {
+            width: 5vh;
+            height: 100%;
+            line-height: 0.5;
+            cursor: pointer;
+
+            span {
+                width: 100%;
+                height: 2px;
+                background: #141517;
+                display: inline-block;
+
+                &:first-of-type {
+                    width: 70%;
+                }
+            }
+        }
+    }
+}
+
+/*Name scroll */
+.slider__container {
+    position: absolute;
+    top: calc(100dvh - 300px);
+    pointer-events: none;
+
+    .slider {
+        position: relative;
+        white-space: nowrap;
+        display: flex;
+
+        p {
+            font-size: 240px;
+            font-weight: 500;
+
+            &::last-of-type {
+                position: absolute;
+                left: 100%;
+            }
+        }
+    }
+}
