@@ -28,7 +28,7 @@ body {
     height: 100%;
 
     &:first-of-type {
-        background: pink;
+        /* background: pink; */
         position: relative;
     }
 }
@@ -105,5 +105,47 @@ header {
                 left: 100%;
             }
         }
+    }
+}
+
+/* Polkadot background pattern */
+/* Credit: https://screenspan.net/polka/ Polkadot CSS Generator */
+.polka {
+    --polka-bg-image: radial-gradient(rgb(0, 0, 0) 10%, transparent 16%);
+    --polka-bg-position: 4px 4px;
+    --polka-bg-size: 8px 8px;
+    --polka-bg-color: transparent;
+
+    background-image: radial-gradient(
+        rgba(0, 0, 0, 0.137) 10%,
+        transparent 16%
+    );
+    background-position: 4px 4px;
+    background-size: 8px 8px;
+    background-color: transparent;
+}
+
+/* Circle text */
+/* Credit: https://www.youtube.com/watch?v=Ly1ktCTpcWo */
+p#circular_text {
+    height: 300px;
+    width: 300px;
+    position: relative;
+    animation: effect 8s linear infinite;
+
+    span {
+        position: absolute;
+        left: 50%;
+        transform-origin: 0 150px;
+    }
+}
+
+@keyframes effect {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
     }
 }

@@ -113,3 +113,16 @@ document.addEventListener("DOMContentLoaded", () => {
             "-=0.25"
         );
 });
+
+// CIRCULAR TEXT EFFECT
+// Credit: https://www.youtube.com/watch?v=Ly1ktCTpcWo
+const str = "CREATIVE FRONT END DEV  ✷ CREATIVE FRONT END DEV ✷";
+const text = document.querySelector('#circular_text');
+
+for (let i = 0; i < str.length; i++) {
+    let span = document.createElement('span');
+    span.innerHTML = str[i];
+    text.appendChild(span);
+
+    span.style.transform = `rotate(${7 * i}deg)`;
+}
