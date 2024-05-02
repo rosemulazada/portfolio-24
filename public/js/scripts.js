@@ -85,6 +85,8 @@ gsap.to(slider, {
 // gsap.set(".img", { y: "100dvh" });
 gsap.set(".slider__container", { y: 200, opacity: 0.25 });
 gsap.set("header", { y: 25, opacity: 0 });
+gsap.set("body", { overflow: "hidden" });
+
 // gsap.set("h1", { y: 25, x: 25, opacity: 0 });
 
 const tl = gsap.timeline({ delay: 1 });
@@ -124,6 +126,13 @@ tl
             clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
         },
         "-=0.25"
+    )
+    .to(
+        "body",
+        {
+            overflow: "auto",
+        },
+        0
     );
 
 // CIRCULAR TEXT EFFECT
@@ -163,6 +172,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // gsap.set(".menu-item p", {
     //     y: 225,
     // });
+
     gsap.set([overlay, subNav], { opacity: 0 });
     gsap.set(menuItems, { y: 25, opacity: 0 });
 
@@ -207,9 +217,12 @@ document.addEventListener("DOMContentLoaded", () => {
     //     "<"
     // );
 
-    tl.to("header", {
-        height: "100%",
+    tl.to("body", {
+        overflow: "hidden",
     })
+        .to("header", {
+            height: "100%",
+        })
         .to(
             toggleBtnBefore,
             {

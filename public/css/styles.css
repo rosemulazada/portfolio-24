@@ -37,6 +37,22 @@ body {
  *               LANDING PAGE
  *=============================================**/
 
+/* Footer */
+footer {
+    background-color: #121310;
+    color: #fff;
+    padding: 5em 3em;
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5em;
+
+    img {
+        height: 2em;
+    }
+}
+
 /* Header */
 header {
     clip-path: polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%);
@@ -216,27 +232,20 @@ header {
         left: 50%;
         transform: translateX(-50%);
         display: flex;
-        gap: 0.5em;
         display: none;
-        /* opacity: 0; */
+        width: max-content;
 
         p {
             font-size: 20px;
+            width: 100%;
             color: white;
         }
     }
 }
 
-.active.burger:before {
-    transform: translateY(0) rotate(45deg);
-}
-
-.active.burger:after {
-    transform: translateY(0) rotate(-45deg);
-}
-
 /*Name scroll */
 .slider__container {
+    font-family: "Merriweather", serif;
     position: absolute;
     top: calc(100dvh - 300px);
     pointer-events: none;
@@ -283,6 +292,7 @@ p#circular_text {
     width: 300px;
     position: relative;
     animation: effect 8s linear infinite;
+    pointer-events: none;
 
     span {
         position: absolute;
