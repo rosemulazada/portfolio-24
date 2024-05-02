@@ -3,6 +3,9 @@ console.log("Hello, world!");
 
 // Imports
 gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(Flip);
+gsap.registerPlugin(CSSRulePlugin);
+console.log(CSSRulePlugin);
 
 /**============================================
  *                  HEADER
@@ -28,10 +31,20 @@ function updateClock() {
 updateClock();
 setInterval(updateClock, 1000);
 
+// TURN FROM COLUMN TO ROW
+const state = Flip.getState("#metadata", { props: "flexDirection" });
+// element.classList.toggle("row");
+// Flip.from(state, {
+//     duration: 1,
+//     ease: "power1.inOut",
+//     absolute: true,
+//     onComplete: myFunc,
+// });
+
 /**============================================
  *               LANDING PAGE
  *=============================================**/
-// Name scroll
+// NAME SCROLL
 // SRC: www.youtube.com/watch?v=AqMESJ51e3o - Tweaked to work without React
 const firstText = document.querySelector(".first-text");
 const secondText = document.querySelector(".second-text");
@@ -68,61 +81,221 @@ gsap.to(slider, {
     x: "-500px",
 });
 
-document.addEventListener("DOMContentLoaded", () => {
-    // gsap.set(".img", { y: "100dvh" });
-    gsap.set(".slider__container", { y: 200, opacity: 0.25 });
-    gsap.set("header", { y: 25, opacity: 0 });
-    // gsap.set("h1", { y: 25, x: 25, opacity: 0 });
+// CLIP-PATH INTRO
+// gsap.set(".img", { y: "100dvh" });
+gsap.set(".slider__container", { y: 200, opacity: 0.25 });
+gsap.set("header", { y: 25, opacity: 0 });
+// gsap.set("h1", { y: 25, x: 25, opacity: 0 });
 
-    const tl = gsap.timeline({ delay: 1 });
+const tl = gsap.timeline({ delay: 1 });
 
-    tl
-        //     .to(".logo__intro", {
-        //     y: "-100dvh",
-        //     duration: 1.5,
-        //     stagger: 0.05,
-        //     ease: "power3.inOut",
-        // })
-        //     .to(".loader", {
-        //         clipPath: "polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%)",
-        //         duration: 1,
-        //         ease: "power3.inOut",
-        //     })
-        .to(
-            ".slider__container",
-            {
-                y: 0,
-                opacity: 1,
-                duration: 1,
-                stagger: 0.1,
-                ease: "power3.inOut",
-            },
-            "-=0.1"
-        )
-        .to(
-            ["header"],
-            {
-                y: 0,
-                x: 0,
-                opacity: 1,
-                duration: 1,
-                stagger: 0.1,
-                ease: "power3.inOut",
-                clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
-            },
-            "-=0.25"
-        );
-});
+tl
+    //     .to(".logo__intro", {
+    //     y: "-100dvh",
+    //     duration: 1.5,
+    //     stagger: 0.05,
+    //     ease: "power3.inOut",
+    // })
+    //     .to(".loader", {
+    //         clipPath: "polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%)",
+    //         duration: 1,
+    //         ease: "power3.inOut",
+    //     })
+    .to(
+        ".slider__container",
+        {
+            y: 0,
+            opacity: 1,
+            duration: 1,
+            stagger: 0.1,
+            ease: "power3.inOut",
+        },
+        "-=0.1"
+    )
+    .to(
+        ["header"],
+        {
+            y: 0,
+            x: 0,
+            opacity: 1,
+            duration: 1,
+            stagger: 0.1,
+            ease: "power3.inOut",
+            clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
+        },
+        "-=0.25"
+    );
 
 // CIRCULAR TEXT EFFECT
 // Credit: https://www.youtube.com/watch?v=Ly1ktCTpcWo
 const str = "CREATIVE FRONT END DEV  ✷ CREATIVE FRONT END DEV ✷";
-const text = document.querySelector('#circular_text');
+const text = document.querySelector("#circular_text");
 
 for (let i = 0; i < str.length; i++) {
-    let span = document.createElement('span');
+    let span = document.createElement("span");
     span.innerHTML = str[i];
     text.appendChild(span);
 
     span.style.transform = `rotate(${7 * i}deg)`;
 }
+
+// MENU
+document.addEventListener("DOMContentLoaded", () => {
+    const toggleBtn = document.querySelector(".hamburger_menu");
+    const toggleBtnBefore = document.querySelector(
+        ".hamburger_menu span:first-of-type"
+    );
+    const toggleBtnAfter = document.querySelector(
+        ".hamburger_menu span:last-of-type"
+    );
+
+    const activeIndex = document.querySelector("#active-null-state");
+
+    // const after = window.getComputedStyle(active, "::after");
+    // console.log("after", after);
+    // after.setAttribute('style', 'background: blue')
+
+    const overlay = document.querySelector(".overlay");
+    const subNav = document.querySelector(".sub-nav");
+    const menuItems = document.querySelectorAll(".menu-item p");
+    const logoSvgPaths = document.querySelectorAll("header nav svg path");
+
+    // gsap.set(".menu-item p", {
+    //     y: 225,
+    // });
+    gsap.set([overlay, subNav], { opacity: 0 });
+    gsap.set(menuItems, { y: 25, opacity: 0 });
+
+    const tl = gsap.timeline({ paused: true });
+
+    // tl.to(".overlay", {
+    //     duration: 1.5,
+    //     clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
+    //     ease: "power4.inOut",
+    // });
+
+    // tl.to(
+    //     ".menu-item p",
+    //     {
+    //         duration: 1.5,
+    //         y: 0,
+    //         stagger: 0.2,
+    //         ease: "power4.inOut",
+    //     },
+    //     "-=1"
+    // );
+
+    // tl.to(
+    //     activeItemIndicator,
+    //     {
+    //         width: "100%",
+    //         duration: 1,
+    //         ease: "power4.inOut",
+    //         delay: 0.5,
+    //     },
+    //     "<"
+    // );
+
+    // tl.to(
+    //     ".sub-nav",
+    //     {
+    //         bottom: "10%",
+    //         opacity: 1,
+    //         duration: 0.5,
+    //         delay: 0.5,
+    //     },
+    //     "<"
+    // );
+
+    tl.to("header", {
+        height: "100%",
+    })
+        .to(
+            toggleBtnBefore,
+            {
+                rotate: "45deg",
+                duration: 0.5,
+            },
+            0
+        )
+        .to(
+            toggleBtnAfter,
+            {
+                rotate: "-45deg",
+                duration: 0.5,
+                translateY: "-7px",
+            },
+            0
+        )
+        .to(
+            overlay,
+            {
+                display: "flex",
+                clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
+                duration: 1,
+                ease: "power4.inOut",
+                opacity: 1,
+            },
+            0
+        );
+
+    menuItems.forEach((menuItem) => {
+        tl.to(menuItem, {
+            y: 0,
+            opacity: 1,
+            clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
+            duration: 0.5,
+            ease: "circ.out",
+        });
+    });
+
+    // logoSvgPaths.forEach((path) => {
+    //     tl.to(path, {
+    //         fill: "#cfc6c1",
+    //         duration: 0.5,
+    //         ease: "circ.out",
+    //     });
+    // });
+
+    // logoSvgPaths.forEach((path) => {
+    //     tl.to(path, {
+    //         fill: "#cfc6c1",
+    //     });
+    // });
+
+    // Continue with the timeline
+    tl.to(
+        subNav,
+        {
+            display: "flex",
+            clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
+            duration: 1,
+            ease: "power4.inOut",
+            opacity: 1,
+        },
+        "-=1"
+    ).to(
+        [toggleBtnBefore, toggleBtnAfter],
+        {
+            background: "#eeeae7",
+        },
+        0
+    );
+
+    function changeId() {
+        activeIndex.id = "active";
+    }
+
+    let isOpen = true;
+    toggleBtn.addEventListener("click", () => {
+        if (isOpen) {
+            isOpen = false;
+
+            tl.play();
+        } else {
+            tl.reverse();
+
+            isOpen = true;
+        }
+    });
+});
