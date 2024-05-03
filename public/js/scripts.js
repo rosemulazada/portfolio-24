@@ -85,7 +85,7 @@ gsap.to(slider, {
 // gsap.set(".img", { y: "100dvh" });
 gsap.set(".slider__container", { y: 200, opacity: 0.25 });
 gsap.set("header", { y: 25, opacity: 0 });
-gsap.set("body", { overflow: "hidden" });
+gsap.set("body", { overflowY: "hidden" });
 
 // gsap.set("h1", { y: 25, x: 25, opacity: 0 });
 
@@ -103,6 +103,7 @@ tl
     //         duration: 1,
     //         ease: "power3.inOut",
     //     })
+
     .to(
         ".slider__container",
         {
@@ -130,7 +131,7 @@ tl
     .to(
         "body",
         {
-            overflow: "auto",
+            overflowY: "auto",
         },
         0
     );
@@ -217,12 +218,9 @@ document.addEventListener("DOMContentLoaded", () => {
     //     "<"
     // );
 
-    tl.to("body", {
-        overflow: "hidden",
+    tl.to("header", {
+        height: "100%",
     })
-        .to("header", {
-            height: "100%",
-        })
         .to(
             toggleBtnBefore,
             {

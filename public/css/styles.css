@@ -56,6 +56,9 @@ footer {
 /* Header */
 header {
     clip-path: polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%);
+    position: fixed;
+    width: 100%;
+    z-index: 99999999999999;
 
     a {
         text-decoration: none;
@@ -170,7 +173,7 @@ header {
         width: 100%;
         height: 100%;
         display: none;
-        background: #121310;
+        background-color: #121310;
         will-change: transform;
         flex-direction: column;
         justify-content: center;
@@ -237,7 +240,7 @@ header {
 
         p {
             font-size: 20px;
-            width: 100%;
+            min-width: fit-content;
             color: white;
         }
     }
@@ -285,6 +288,22 @@ header {
     background-color: transparent;
 }
 
+.polka-white {
+    --polka-bg-image: radial-gradient(
+        var(--polka-dots-color) 10%,
+        transparent 16%
+    );
+    --polka-bg-position: 4px 4px;
+    --polka-bg-size: 8px 8px;
+    --polka-bg-color: black;
+    --polka-dots-color: rgba(255, 255, 255, 0.439);
+
+    background-image: radial-gradient(var(--polka-dots-color) 10%, black 16%);
+    background-position: var(--polka-bg-position);
+    background-size: var(--polka-bg-size);
+    background-color: black;
+}
+
 /* Circle text */
 /* Credit: https://www.youtube.com/watch?v=Ly1ktCTpcWo */
 p#circular_text {
@@ -315,4 +334,99 @@ p#circular_text {
 .row {
     display: flex;
     flex-direction: row;
+}
+
+/*======================
+ *       ABOUT ME 
+ *======================*/
+.fullpage_container:nth-of-type(2) {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(6, 1fr);
+    max-height: 100%;
+    width: 100%;
+    padding: 5vw;
+    position: relative;
+
+    .item {
+        &:first-of-type {
+            display: flex;
+            justify-content: space-between;
+            padding: 0 0 0 5vw;
+            gap: 0;
+
+            .first-item {
+                display: flex;
+                gap: 2em;
+            }
+        }
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        align-content: center;
+        justify-content: end;
+        height: min-content;
+
+        .item-text {
+            font-size: clamp(1.5rem, 7vw, 10vh);
+            text-transform: uppercase;
+            font-weight: 550;
+            color: black;
+            justify-self: right;
+        }
+    }
+
+    .item:nth-child(3n + 2) .item-text:last-child {
+        padding-right: 10vw;
+    }
+
+    .item:nth-child(3n + 1) .item-text:last-child {
+        padding-right: 4vw;
+    }
+
+    button {
+        background: black;
+        border-radius: 50%;
+        width: 12.5vw;
+        height: 12.5vw;
+        aspect-ratio: 1;
+        border: none;
+        outline: none;
+        color: white;
+        font-size: 10vh;
+        position: absolute;
+        left: 10vh;
+        bottom: 8vh;
+        cursor: pointer;
+        transition: all 0.25s ease-in;
+            border: 2px dashed white;
+
+
+        &::after {
+            content: "About me";
+            display: flex;
+            text-transform: uppercase;
+            position: absolute;
+            top: 40%;
+            color: black;
+            left: 50%;
+            font-weight: 600;
+            font-size: 1rem;
+            z-index: -1;
+            transition: all 0.5s ease-out;
+        }
+
+        &:hover::after {
+            top: -15%;
+            left: 100%;
+            z-index: 0;
+        }
+
+        &:hover {
+            color: black;
+            background: white;
+            border: 1px dashed black;
+        }
+    }
 }

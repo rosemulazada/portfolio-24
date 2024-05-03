@@ -14,6 +14,7 @@
         }
     </style>
     <body>
+        <!-- HERO PAGE -->
         <div class="fullpage_container polka">
             <%- include ('../partials/header.ejs') %>
 
@@ -24,18 +25,17 @@
             <p id="circular_text"></p>
 
             <!-- Name scroll -->
-            <div class="slider__container">
-                <div class="slider">
-                    <p class="first-text">&nbsp;Rose Mulazada ━</p>
-                    <p class="second-text">&nbsp;Rose Mulazada ━</p>
-                </div>
-            </div>
+            <%- include ('../partials/slider.ejs') %>
         </div>
-        <div class="fullpage_container">
-            <h2>About me</h2>
-        </div>
+        <!-- ABOUT -->
+        <%- include ('../partials/about.ejs')%>
+        <!-- WORKS -->
         <div class="fullpage_container polka"></div>
+        <!-- FEATS -->
         <div class="fullpage_container"></div>
+        <!-- CONTACT ? -->
+        <!-- <div class="fullpage_container"></div> -->
+        <!-- FOOTER -->
         <footer>
             © Copyright 2024 Rose Mulazada
             <img src="svg/rose-white.svg" alt="A white rose" />
