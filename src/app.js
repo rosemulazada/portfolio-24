@@ -4,6 +4,7 @@ const fs = require("fs");
 
 // NPM modules
 const express = require("express");
+const bodyParser = require("body-parser");
 
 const app = express();
 const port = process.env.PORT || 8080;
@@ -24,6 +25,7 @@ app.set("views", viewsPath);
 
 // Setup static directory to serve
 app.use(express.static(publicDirectoryPath));
+app.use(bodyParser.json());
 
 /**========================================================================
  *                           CODE START
@@ -33,13 +35,11 @@ app.use(express.static(publicDirectoryPath));
  *                   ROUTING
  *=============================================**/
 
-app.get("", (req, res) => {
+app.get("/", (req, res) => {
     res.render("index", {
         worksData: worksData,
         dataPerWorkCategory: categories,
     });
-
-    // res.json(categories);
 });
 
 app.listen(port, async () => {

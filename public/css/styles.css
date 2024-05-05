@@ -524,7 +524,7 @@ p#circular_text {
             margin: 3em;
 
             img {
-                width: 20vw;
+                width: 25vw;
             }
 
             &:first-of-type {

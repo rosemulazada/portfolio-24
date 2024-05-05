@@ -2,7 +2,7 @@
     <ul class="filters">
     <% Object.keys(worksData).forEach((workCategory, index) => { %>
         <% const projects = worksData[workCategory][Object.keys(worksData[workCategory])[0]]; %>
-        <li class="filter" data-work-topic="<%- workCategory %>">
+        <li class="<%= index === 0 ? 'active filter' : 'filter' %>" data-work-topic="<%- workCategory %>">
             <h3 <%= index === 0 ? 'class=all' : '' %>><%= Object.keys(worksData[workCategory])[0] %></h3>
             <p <%= index === 0 ? 'class=all-p' : '' %>>(<%= projects.length %>)</p>
         </li>
@@ -10,36 +10,5 @@
 </ul>
 
 
-    <div class="works">
-
-       
-
-
-
-
-        <!-- <div class="work">
-            <img src="/img/test.png" alt="" />
-            <h3>Test1</h3>
-        </div>
-        <div class="work">
-            <img src="/img/test.png" alt="" />
-            <h3>Test2</h3>
-        </div>
-        <div class="work">
-            <img src="/img/test.png" alt="" />
-            <h3>Test3</h3>
-        </div>
-        <div class="work">
-            <img src="/img/test.png" alt="" />
-            <h3>Test4</h3>
-        </div>
-        <div class="work">
-            <img src="/img/test.png" alt="" />
-            <h3>Test5</h3>
-        </div>
-        <div class="work">
-            <img src="/img/test.png" alt="" />
-            <h3>Test6</h3>
-        </div> -->
-    </div>
+    <div class="works"></div>
 </div>

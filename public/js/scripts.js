@@ -318,6 +318,7 @@ const allFilterP = document.querySelector(".all-p");
 filterItems.forEach((activeFilter) => {
     activeFilter.addEventListener("click", () => {
         allFilter.classList.remove("all");
+        allFilter.classList.remove("active");
         allFilterP.classList.remove("all-p");
 
         const activeFilterH3 = activeFilter.querySelector("h3");
@@ -361,17 +362,51 @@ filterItems.forEach((activeFilter) => {
     });
 });
 
-// const worksContainer = document.querySelector(".works");
-// for (let work in worksData) {
-//     const workItem = document.createElement('div');
-//     const workItemH3 = document.createElement("h3");
-//     const workItemImg = document.createElement("img");
-//     workItem.classList.add('work');
-//     workItem.appendChild(workItemH3);
-//     workItem.appendChild(workItemImg);
-//     worksContainer.appendChild(workItem)
-// }
+let activeWorkData = null;
 
-// Object.keys(worksData).forEach((workCategory) => {
+function checkActiveFilter() {
+    const filterItems = document.querySelectorAll(".filter");
+    filterItems.forEach((filterItem) => {
+        if (filterItem.classList.contains("active")) {
+            console.log("Filter contains class active:", filterItem);
+            const activeItemDataAttribute = filterItem.dataset.workTopic;
+            console.log("UPDATED ACTIVE WORK DATA:", activeWorkData);
+            activeWorkData = dataPerWorkCategory[activeItemDataAttribute];
 
-// })
+            const activeWorkDataNames = activeWorkData.map((data) => data.name);
+            const activeWorkDataImgs = activeWorkData.map((data) => data.img);
+            const worksContainer = document.querySelector(".works");
+
+            worksContainer.innerHTML = "";
+
+            for (let work in activeWorkData) {
+                const workItem = document.createElement("div");
+                const workItemH3 = document.createElement("h3");
+                const workItemImg = document.createElement("img");
+
+                workItemH3.innerHTML = `${activeWorkDataNames[work]}`;
+                workItemImg.setAttribute("src", `${activeWorkDataImgs[work]}`);
+
+                workItem.classList.add("work");
+                workItem.appendChild(workItemImg);
+                workItem.appendChild(workItemH3);
+                worksContainer.appendChild(workItem);
+            }
+
+            return;
+        }
+    });
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    checkActiveFilter();
+    console.log("ACTIVE WORK DATA:", activeWorkData);
+});
+
+const observer = new MutationObserver(checkActiveFilter);
+
+observer.observe(document.body, {
+    attributes: true,
+    attributeFilter: ["class"],
+    subtree: true,
+});
