@@ -1,11 +1,6 @@
-// Script test
-console.log("Hello, world!");
-
 // Imports
 gsap.registerPlugin(ScrollTrigger);
 gsap.registerPlugin(Flip);
-gsap.registerPlugin(CSSRulePlugin);
-console.log(CSSRulePlugin);
 
 /**============================================
  *                  HEADER
@@ -243,7 +238,7 @@ document.addEventListener("DOMContentLoaded", () => {
             {
                 display: "flex",
                 clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
-                duration: 1,
+                duration: 1.5,
                 ease: "power4.inOut",
                 opacity: 1,
             },
@@ -310,3 +305,73 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 });
+
+/**============================================
+ *                  WORKS
+ *=============================================**/
+// Imported worksData from server-side
+const filterContainer = document.querySelector(".filters");
+const filterItems = document.querySelectorAll(".filter");
+const allFilter = document.querySelector(".all");
+const allFilterP = document.querySelector(".all-p");
+
+filterItems.forEach((activeFilter) => {
+    activeFilter.addEventListener("click", () => {
+        allFilter.classList.remove("all");
+        allFilterP.classList.remove("all-p");
+
+        const activeFilterH3 = activeFilter.querySelector("h3");
+        const activeFilterP = activeFilter.querySelector("p");
+
+        activeFilter.classList.add("active");
+
+        if (activeFilter.classList.contains("active")) {
+            activeFilterP.style.color = "#fb6eff";
+            const activeFilterText = activeFilterH3.innerText;
+            const chars = activeFilterText.split("");
+
+            activeFilterH3.innerHTML = "";
+
+            chars.forEach((char, index) => {
+                const span = document.createElement("span");
+                span.textContent = char;
+                activeFilterH3.appendChild(span);
+
+                gsap.to(span, {
+                    fontSize: "8vw",
+                    fontWeight: "900",
+                    marginRight: ".5em",
+                    color: "#fb6eff",
+                    duration: 0.5,
+                    ease: "power2.out",
+                    delay: index * 0.05,
+                });
+            });
+        }
+
+        filterItems.forEach((inactiveFilter) => {
+            if (activeFilter !== inactiveFilter) {
+                inactiveFilter.classList.remove("active");
+
+                inactiveFilter.querySelector("h3").innerHTML =
+                    inactiveFilter.querySelector("h3").innerText;
+                inactiveFilter.querySelector("p").style.color = "";
+            }
+        });
+    });
+});
+
+// const worksContainer = document.querySelector(".works");
+// for (let work in worksData) {
+//     const workItem = document.createElement('div');
+//     const workItemH3 = document.createElement("h3");
+//     const workItemImg = document.createElement("img");
+//     workItem.classList.add('work');
+//     workItem.appendChild(workItemH3);
+//     workItem.appendChild(workItemImg);
+//     worksContainer.appendChild(workItem)
+// }
+
+// Object.keys(worksData).forEach((workCategory) => {
+
+// })
