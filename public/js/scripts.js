@@ -339,7 +339,8 @@ filterItems.forEach((activeFilter) => {
                 activeFilterH3.appendChild(span);
 
                 gsap.to(span, {
-                    fontSize: "8vw",
+                    fontSize: "12vw",
+                    textTransform: 'uppercase',
                     fontWeight: "900",
                     marginRight: ".5em",
                     color: "#fb6eff",
