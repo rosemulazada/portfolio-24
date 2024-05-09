@@ -23,6 +23,7 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     overflow-x: hidden;
+    scroll-behavior: smooth;
 }
 
 .fullpage_container {
@@ -348,8 +349,8 @@ p#circular_text {
     width: 100%;
     padding: 5vw;
     position: relative;
-    font-family: 'Barlow Condensed';
-    font-weight: 100;
+    font-family: "Barlow Condensed";
+    font-weight: 00;
 
     .item {
         &:first-of-type {
@@ -512,24 +513,25 @@ p#circular_text {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         grid-template-rows: repeat(18, 1fr);
-        gap: 0.5em;
         overflow: scroll;
         -ms-overflow-style: none; /* IE and Edge */
         scrollbar-width: none; /* Firefox */
         position: relative;
         justify-content: center;
         z-index: 9999999;
+        max-width: 70%;
+        gap: 60px;
 
         &::-webkit-scrollbar {
             display: none;
         }
 
         .work {
-            width: 50%;
             margin: 3em;
+            /* width: 25%; */
 
             img {
-                width: 25vw;
+                width: 100%;
             }
 
             &:first-of-type {

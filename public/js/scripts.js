@@ -340,7 +340,7 @@ filterItems.forEach((activeFilter) => {
 
                 gsap.to(span, {
                     fontSize: "12vw",
-                    textTransform: 'uppercase',
+                    textTransform: "uppercase",
                     fontWeight: "900",
                     marginRight: ".5em",
                     color: "#fb6eff",
@@ -375,22 +375,30 @@ function checkActiveFilter() {
             activeWorkData = dataPerWorkCategory[activeItemDataAttribute];
 
             const activeWorkDataNames = activeWorkData.map((data) => data.name);
+            const activeWorkDataDesc = activeWorkData.map(
+                (data) => data.description
+            );
             const activeWorkDataImgs = activeWorkData.map((data) => data.img);
+            const activeWorkDataLength = activeWorkData.length;
             const worksContainer = document.querySelector(".works");
+            // worksContainer.style.gridTemplateRows = `repeat(${activeWorkDataLength}, 1fr)`;
 
             worksContainer.innerHTML = "";
 
             for (let work in activeWorkData) {
                 const workItem = document.createElement("div");
                 const workItemH3 = document.createElement("h3");
+                const workItemP = document.createElement("p");
                 const workItemImg = document.createElement("img");
 
                 workItemH3.innerHTML = `${activeWorkDataNames[work]}`;
+                workItemP.innerHTML = `${activeWorkDataDesc[work]}`;
                 workItemImg.setAttribute("src", `${activeWorkDataImgs[work]}`);
 
                 workItem.classList.add("work");
                 workItem.appendChild(workItemImg);
                 workItem.appendChild(workItemH3);
+                workItem.appendChild(workItemP);
                 worksContainer.appendChild(workItem);
             }
 
@@ -410,4 +418,36 @@ observer.observe(document.body, {
     attributes: true,
     attributeFilter: ["class"],
     subtree: true,
+});
+
+// Don't allow scroll while user hovering over work container
+let isPinned = false;
+let scrollPosition = 0;
+const workContainer = document.querySelector(".works");
+workContainer.addEventListener("mouseenter", function () {
+    pinViewport(true);
+});
+
+workContainer.addEventListener("mouseleave", function () {
+    pinViewport(false);
+});
+
+workContainer.addEventListener("wheel", function (event) {
+    if (isPinned) {
+        event.preventDefault();
+        workContainer.scrollTop += event.deltaY;
+    }
+});
+
+function pinViewport(pin) {
+    isPinned = pin;
+    if (isPinned) {
+        scrollPosition = window.scrollY;
+    }
+}
+
+document.addEventListener("scroll", function () {
+    if (isPinned) {
+        window.scrollTo(0, scrollPosition);
+    }
 });

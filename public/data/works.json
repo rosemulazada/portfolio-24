@@ -2,46 +2,73 @@
     "all": {
         "All": [
             {
-                "name": "All",
-                "description": "Test",
+                "name": "Assemble your playlist",
+                "description": "Preview music, add it to a playlist, and enjoy!",
                 "img": "/img/works/js/fvd-opdr2.png"
             },
             {
-                "name": "Test2",
-                "description": "Test",
+                "name": "CSS Day-ta '23",
+                "tags": ["SvelteKit", "MapBox GL", "CSS Day API"],
+                "description": "A 3D interactive globe showcasing where CSS Day visitors came from per year.",
                 "img": "/img/works/js/fvd-opdr2.png"
             },
             {
-                "name": "Test3",
-                "description": "Test",
+                "name": "Spotify API: Harmonize",
+                "tags": ["Express.js", "EJS", "Spotify API", "Web API"],
+                "description": "A webapp that authorizes your account to analyse your most listened song and makes an auto-saved playlist with similar music!",
+                "img": "/img/works/js/fvd-opdr2.png"
+            },
+            {
+                "name": "LastFM API: Music Analyser",
+                "tags": ["SvelteKit", "Chroma.js", "LastFM API"],
+                "description": "",
                 "img": "/img/works/js/fvd-opdr2.png"
             },
             {
                 "name": "Test4",
+                "description": "Test",
+                "img": "/img/works/js/fvd-opdr2.png"
+            },
+            {
+                "name": "Test5",
                 "description": "Test",
                 "img": "/img/works/js/fvd-opdr2.png"
             }
         ]
     },
+
     "devtoolkit": {
         "Dev Toolkit": [
             {
-                "name": "Dev Toolkit",
-                "description": "Test",
+                "name": "CSS Day-ta '23",
+                "tags": ["SvelteKit", "MapBox GL", "CSS Day API"],
+                "description": "A 3D interactive globe showcasing where CSS Day visitors came from per year.",
                 "img": "/img/works/js/fvd-opdr2.png"
             },
             {
-                "name": "Test2",
-                "description": "Test",
+                "name": "Spotify API: Harmonize",
+                "tags": ["Express.js", "EJS", "Spotify API", "Web API"],
+                "description": "A webapp that authorizes your account to analyse your most listened song and makes an auto-saved playlist with similar music!",
                 "img": "/img/works/js/fvd-opdr2.png"
             },
             {
-                "name": "Test3",
-                "description": "Test",
+                "name": "LastFM API: Music Analyser",
+                "tags": ["SvelteKit", "Chroma.js", "LastFM API"],
+                "description": "",
                 "img": "/img/works/js/fvd-opdr2.png"
             },
             {
                 "name": "Test4",
+                "description": "Test",
+                "img": "/img/works/js/fvd-opdr2.png"
+            },
+            {
+                "name": "Test5",
+                "description": "Test",
+                "img": "/img/works/js/fvd-opdr2.png"
+            },
+            {
+                "name": "Test6",
                 "description": "Test",
                 "img": "/img/works/js/fvd-opdr2.png"
             }
